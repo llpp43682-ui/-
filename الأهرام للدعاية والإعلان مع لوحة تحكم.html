@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الأهرام للدعاية والإعلان | إبداعك... بصمتنا</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            cairo: ['Cairo', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              navy: '#0b132b',
+              blue: '#1c2541',
+              accent: '#3a506b',
+              gold: '#f59e0b',
+              goldDark: '#d97706',
+              cyan: '#06b6d4',
+              redCash: '#e11d48'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #1e293b;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 9999px;
+    }
+    .glass-nav {
+      background: rgba(11, 19, 43, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 3s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-900">
+
+  <!-- Toast Notification System -->
+  <div id="toast" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-6 py-3.5 rounded-2xl shadow-2xl transition-all duration-300 transform -translate-y-24 opacity-0 pointer-events-none bg-emerald-600 text-white font-bold border border-emerald-400">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-xl"></i>
+    <span id="toast-message">تمت العملية بنجاح!</span>
+  </div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo & Brand -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 via-amber-400 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20 group-hover:scale-105 transition-transform">
+          <i class="fa-solid fa-cubes-stacked text-slate-950 text-2xl"></i>
+        </div>
+        <div>
+          <span class="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center gap-2">
+            <span id="nav-brand-name">الأهرام</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">للدعاية والإعلان</span>
+          </span>
+          <p class="text-xs text-slate-400 font-medium" id="nav-brand-slogan">إبداعك... بصمتنا</p>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-7 font-bold text-sm text-slate-300">
+        <a href="#services" class="hover:text-amber-400 transition-colors">خدماتنا</a>
+        <a href="#why-us" class="hover:text-amber-400 transition-colors">ليه تختارنا؟</a>
+        <a href="#order-steps" class="hover:text-amber-400 transition-colors">طريقة الطلب</a>
+        <a href="#order-builder" class="hover:text-amber-400 transition-colors">طلب أونلاين</a>
+        <a href="#marketing-guide" class="hover:text-amber-400 transition-colors">نماذج النشر</a>
+        <a href="#contact" class="hover:text-amber-400 transition-colors">اتصل بنا</a>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-3">
+        <!-- Admin Dashboard Button -->
+        <button onclick="openAdminModal()" class="relative flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-400 border border-slate-700 hover:border-amber-500/50 transition-all font-bold text-xs sm:text-sm shadow-md">
+          <i class="fa-solid fa-sliders text-amber-400"></i>
+          <span class="hidden sm:inline">لوحة التحكم</span>
+          <span class="sm:hidden">الإدارة</span>
+        </button>
+
+        <!-- Fast WhatsApp CTA -->
+        <a id="nav-whatsapp-btn" href="#" target="_blank" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold text-xs sm:text-sm shadow-lg shadow-emerald-600/25 transition-all hover:scale-105">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span class="hidden lg:inline">اطلب عبر واتساب</span>
+          <span class="lg:hidden">واتساب</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="relative overflow-hidden pt-12 pb-20 lg:pt-20 lg:pb-28 border-b border-slate-800/80">
+    <!-- Background Glows -->
+    <div class="absolute top-0 right-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Text Column -->
+        <div class="lg:col-span-7 text-center lg:text-right">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 border border-amber-500/30 text-amber-400 text-xs sm:text-sm font-bold mb-6 shadow-inner">
+            <i class="fa-solid fa-award text-amber-400"></i>
+            <span>إدارة: <span id="hero-manager-name">م. أيمن عمران</span></span>
+            <span class="text-slate-600">•</span>
+            <span id="hero-location-badge">سوهاج — دار السلام</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.25] tracking-tight mb-6">
+            <span id="hero-title-main">الأهرام للدعاية والإعلان</span>
+            <br>
+            <span class="gold-gradient-text" id="hero-slogan-display">إبداعك... بصمتنا</span>
+          </h1>
+
+          <p class="text-slate-300 text-base sm:text-lg lg:text-xl font-normal leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+            نحوّل أفكارك إلى تصاميم تلفت الأنظار وتصنع فارقاً حقيقياً في ظهور مشروعك أو مناسبتك. من البانرات والواجهات الإعلانية إلى كروت المناسبات الراقية بأعلى معايير الجودة وأحدث تقنيات الطباعة وبأسعار تنافسية.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <a href="#order-builder" class="flex items-center gap-3 px-7 py-4 rounded-2xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-base shadow-xl shadow-amber-500/20 transition-all hover:scale-105">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <span>جهّز طلبك أونلاين</span>
+            </a>
+
+            <a id="hero-call-btn" href="#" class="flex items-center gap-3 px-6 py-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-base border border-slate-700 hover:border-slate-600 transition-all">
+              <i class="fa-solid fa-phone text-amber-400"></i>
+              <span id="hero-phone-display">01142235030+</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8 border-t border-slate-800/80">
+            <div class="flex flex-col items-center lg:items-start">
+              <div class="text-amber-400 font-black text-xl flex items-center gap-1.5">
+                <i class="fa-solid fa-print text-sm"></i> أحدث دقة
+              </div>
+              <span class="text-xs text-slate-400">طباعة تدوم طويلاً</span>
+            </div>
+            <div class="flex flex-col items-center lg:items-start">
+              <div class="text-emerald-400 font-black text-xl flex items-center gap-1.5">
+                <i class="fa-solid fa-truck-fast text-sm"></i> سرعة تسليم
+              </div>
+              <span class="text-xs text-slate-400">التزام صارم بالموعد</span>
+            </div>
+            <div class="flex flex-col items-center lg:items-start">
+              <div class="text-cyan-400 font-black text-xl flex items-center gap-1.5">
+                <i class="fa-solid fa-tags text-sm"></i> عروض كميات
+              </div>
+              <span class="text-xs text-slate-400">أسعار تنافسية جداً</span>
+            </div>
+            <div class="flex flex-col items-center lg:items-start">
+              <div class="text-purple-400 font-black text-xl flex items-center gap-1.5">
+                <i class="fa-solid fa-wallet text-sm"></i> دفع إلكتروني
+              </div>
+              <span class="text-xs text-slate-400">فودافون كاش ومحافظ</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Visual Showcase Card -->
+        <div class="lg:col-span-5">
+          <div class="relative bg-gradient-to-b from-slate-900 to-slate-950 p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl">
+            <div class="absolute -top-3 -right-3 px-4 py-1.5 rounded-xl bg-amber-500 text-slate-950 font-black text-xs uppercase shadow-lg">
+              خدمة سريعة في سوهاج
+            </div>
+
+            <div class="space-y-4">
+              <!-- Quick Wallet Box -->
+              <div class="p-5 rounded-2xl bg-slate-800/90 border border-slate-700/80 hover:border-amber-500/40 transition-all">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold text-slate-400 flex items-center gap-2">
+                    <i class="fa-solid fa-money-bill-transfer text-emerald-400"></i>
+                    المحفظة الإلكترونية لدفع العربون
+                  </span>
+                  <span class="text-[10px] bg-red-600/20 text-red-400 px-2 py-0.5 rounded-full font-bold">فودافون كاش</span>
+                </div>
+                <div class="flex items-center justify-between gap-2 mt-2">
+                  <span id="hero-cash-wallet" class="text-2xl font-black text-white tracking-widest font-mono">01095112718</span>
+                  <button onclick="copyToClipboard(appState.cashWallet, 'تم نسخ رقم المحفظة!')" class="px-4 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500 text-amber-400 hover:text-slate-950 border border-amber-500/30 transition-all font-bold text-xs flex items-center gap-1.5">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>نسخ</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Fast WhatsApp Quick Action -->
+              <div class="p-5 rounded-2xl bg-gradient-to-br from-emerald-950/40 to-slate-900 border border-emerald-800/40">
+                <div class="flex items-start gap-4">
+                  <div class="w-12 h-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center shrink-0 border border-emerald-500/30 text-emerald-400 text-2xl">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="font-bold text-white text-sm">احجز طلبك دون زيارة المقر</h4>
+                    <p class="text-xs text-slate-400 mt-1">ابعت التصميم أو الفكرة على واتساب، حوّل العربون، واستلم طلبك في موعدك!</p>
+                    <a id="hero-whatsapp-order-btn" href="#" target="_blank" class="mt-3 inline-flex items-center gap-2 text-xs font-black text-emerald-400 hover:text-emerald-300">
+                      <span>إرسال فكرة أو طلب الآن</span>
+                      <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Address Preview -->
+              <div class="p-4 rounded-2xl bg-slate-900 border border-slate-800 flex items-center gap-3">
+                <i class="fa-solid fa-location-dot text-amber-500 text-lg shrink-0"></i>
+                <div class="text-xs">
+                  <div class="text-slate-400">مقر الوكالة الرئيسي:</div>
+                  <div id="hero-address-display" class="font-bold text-slate-200">سوهاج — دار السلام — شارع السوق القديم</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 bg-slate-900/60 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-bold mb-3">
+          <i class="fa-solid fa-star"></i> خدمات متميزة وشاملة
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">كل ما يحتاجه مشروعك أو مناسبتك</h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-3">نقدم حلول دعاية وطباعة متكاملة تجمع بين الإتقان، السرعة، والأسعار الملائمة لكل الميزانيات.</p>
+      </div>
+
+      <!-- Dynamic Services Grid -->
+      <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered via JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section id="why-us" class="py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 border border-slate-700 text-amber-400 text-xs font-bold mb-3">
+            <i class="fa-solid fa-shield-halved"></i> الجودة والالتزام
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black text-white leading-tight">
+            ليه تختار <span class="text-amber-400">«الأهرام»</span> لطلبك القادم؟
+          </h2>
+          <p class="text-slate-400 mt-4 leading-relaxed text-sm sm:text-base">
+            لأننا نؤمن بأن مطبوعاتك تعبر عن هويتك ونجاحك، نحرص في كل تفصيلة على الجمع بين الدقة العالية وخامات الطباعة الممتازة والالتزام التام بالمواعيد.
+          </p>
+
+          <div class="mt-8 p-6 rounded-3xl bg-slate-900 border border-slate-800 flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl font-black shrink-0 border border-amber-500/20">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+            <div>
+              <h4 class="font-bold text-white text-base">ثقة عملائنا في سوهاج</h4>
+              <p class="text-xs text-slate-400 mt-1">خدمنا مئات المحلات، الشركات، والمناسبات العائلية في دار السلام وسوهاج والمحافظات المجاورة.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/30 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <h3 class="font-bold text-white text-lg mb-2">تصاميم احترافية على ذوقك</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">فريقنا يصمم لك فكرة مبتكرة وخاصة تناسب مجال عملك أو طابع مناسبتك بدون قوالب مستهلكة.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/30 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-stopwatch-20"></i>
+            </div>
+            <h3 class="font-bold text-white text-lg mb-2">سرعة ودقة في التسليم</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">مواعيدنا مقدسة، بنسلمك في الوقت المتفق عليه بأعلى جودة طباعة وخامات متينة.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/30 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-percent"></i>
+            </div>
+            <h3 class="font-bold text-white text-lg mb-2">خصومات خاصة للكميات</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">أسعار تنافسية تناسب الجميع مع عروض وتخفيضات مجزية لطلبات الجملة والكميات الكبيرة.</p>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-amber-500/30 transition-all">
+            <div class="w-12 h-12 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center text-xl mb-4">
+              <i class="fa-solid fa-crown"></i>
+            </div>
+            <h3 class="font-bold text-white text-lg mb-2">خبرة عريقة وثقة مستمرة</h3>
+            <p class="text-slate-400 text-xs leading-relaxed">إشراف هندسي وتنفيذي مباشر من م. أيمن عمران لضمان خروج كل عمل بأفضل صورة ممكنة.</p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How to Order & Payment Flow -->
+  <section id="order-steps" class="py-20 bg-slate-900/40 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-amber-400 text-xs font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">سهولة وراحة تامة</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mt-3">اطلب شغلك وأنت في مكانك!</h2>
+        <p class="text-slate-400 text-sm sm:text-base mt-2">وفّر وقتك ومجهودك، وخلّي طلبك يوصل لحد عندك في 3 خطوات بسيطة:</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        
+        <!-- Step 1 -->
+        <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-amber-500/30 transition-all text-center relative group">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-amber-500 to-amber-400 text-slate-950 font-black text-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-amber-500/20">
+            1
+          </div>
+          <h3 class="text-xl font-black text-white mb-3">اختار أو شاركنا فكرتك</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            اختار من النماذج أو ابعت المقاسات والبيانات وتصميمك عبر واتساب للبدء في المعاينة الفورية.
+          </p>
+          <div class="mt-6">
+            <span class="inline-flex items-center gap-1.5 text-xs text-amber-400 font-bold bg-amber-500/10 px-3 py-1 rounded-full">
+              <i class="fa-brands fa-whatsapp"></i> تواصل مباشر وسريع
+            </span>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-emerald-500/30 transition-all text-center relative group">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-slate-950 font-black text-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/20">
+            2
+          </div>
+          <h3 class="text-xl font-black text-white mb-3">أكّد بعربون المحفظة</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            حوّل عربون بسيط على محفظتنا الإلكترونية (فودافون كاش) وابعت إشعار التحويل لبدء التنفيذ فوراً.
+          </p>
+          <div class="mt-6">
+            <button onclick="copyToClipboard(appState.cashWallet, 'تم نسخ رقم فودافون كاش!')" class="inline-flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-xl hover:bg-emerald-500 hover:text-slate-950 transition-all">
+              <i class="fa-regular fa-copy"></i>
+              <span id="step-cash-display">01095112718</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="p-8 rounded-3xl bg-slate-900 border border-slate-800 hover:border-cyan-500/30 transition-all text-center relative group">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-cyan-500 to-blue-500 text-slate-950 font-black text-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-cyan-500/20">
+            3
+          </div>
+          <h3 class="text-xl font-black text-white mb-3">استلم وادفع الباقي</h3>
+          <p class="text-slate-400 text-sm leading-relaxed">
+            استلم شغلك مطبوعاً بأعلى جودة وجاهزاً في الموعد المحدد، وادفع باقي الحساب عند الاستلام بكل راحة.
+          </p>
+          <div class="mt-6">
+            <span class="inline-flex items-center gap-1.5 text-xs text-cyan-400 font-bold bg-cyan-500/10 px-3 py-1 rounded-full">
+              <i class="fa-solid fa-circle-check"></i> ضمان جودة 100%
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Payment Alert Box -->
+      <div class="mt-12 p-6 rounded-3xl bg-gradient-to-r from-red-950/40 via-slate-900 to-slate-900 border border-red-900/50 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4 text-right">
+          <div class="w-14 h-14 rounded-2xl bg-red-600/20 text-red-500 flex items-center justify-center text-3xl shrink-0">
+            <i class="fa-solid fa-mobile-screen-button"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-white text-base">رقم المحفظة الإلكترونية للدفع السريع</h4>
+            <p class="text-xs text-slate-400 mt-0.5">فودافون كاش / إنستاباي / جميع المحافظ الإلكترونية المعتمدة</p>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <span id="fast-wallet-number" class="text-2xl sm:text-3xl font-black tracking-widest text-amber-400 font-mono">01095112718</span>
+          <button onclick="copyToClipboard(appState.cashWallet, 'تم نسخ رقم فودافون كاش!')" class="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center gap-2 transition-all shadow-lg shadow-red-600/30">
+            <i class="fa-regular fa-copy"></i>
+            <span>نسخ الرقم</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Order Form / WhatsApp Link Builder -->
+  <section id="order-builder" class="py-20 border-b border-slate-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12">
+        <span class="text-amber-400 text-xs font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">احسب واطلب فوراً</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mt-3">تجهيز تفاصيل طلبك</h2>
+        <p class="text-slate-400 text-sm mt-2">حدد الخدمة والمواصفات لإنشاء رسالة واتساب جاهزة بكافة التفاصيل للتنفيذ المباشر.</p>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <form id="client-order-form" onsubmit="handleCustomerOrder(event)" class="space-y-6">
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Name -->
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-2">الاسم / اسم المحل أو النشاط *</label>
+              <input type="text" id="order-cust-name" required placeholder="مثال: أحمد عبد الله - محلات البركة" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-colors">
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-2">رقم الهاتف / الواتساب *</label>
+              <input type="tel" id="order-cust-phone" required placeholder="01xxxxxxxxx" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-colors">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <!-- Service Selection -->
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-2">نوع الخدمة المطلوبة *</label>
+              <select id="order-service-select" onchange="updateEstimatedPrice()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-colors">
+                <!-- Populated dynamically -->
+              </select>
+            </div>
+
+            <!-- Quantity / Approximate Dimensions -->
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-2">الكمية أو المقاس التقريبي</label>
+              <input type="text" id="order-cust-qty" placeholder="مثال: بانر 3*2 متر أو 1000 كارت" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-colors">
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-2">تفاصيل إضافية أو نصوص مطلوب كتابتها</label>
+            <textarea id="order-cust-notes" rows="3" placeholder="اكتب هنا أي تفاصيل تخص الألوان، النصوص، أو مواعيد التسليم المفضلة..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-amber-500 transition-colors"></textarea>
+          </div>
+
+          <!-- Summary & Send Action -->
+          <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-xs text-slate-400">
+              <i class="fa-solid fa-lock text-amber-400 ml-1"></i>
+              سيتم حفظ الطلب وتجهيز رسالة واتساب رسمية مباشرة.
+            </div>
+
+            <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-extrabold text-sm shadow-xl shadow-emerald-500/20 transition-all flex items-center justify-center gap-2">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>إرسال الطلب عبر واتساب</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Marketing Guide & Content Hub (Directly from User Prompt) -->
+  <section id="marketing-guide" class="py-20 bg-slate-900/40 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="text-amber-400 text-xs font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">جاهزة للاستخدام والنشر</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mt-3">دليل المحتوى التسويقي</h2>
+        <p class="text-slate-400 text-sm mt-2">نماذج إعلانية ورسائل سريعة معتمدة، يمكنك نسخها بنقرة زر لنشرها على السوشيال ميديا أو إرسالها للعملاء.</p>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
+        <button onclick="switchTemplateTab('full')" id="tab-btn-full" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20">
+          1. النسخة الكاملة (بروفايل / موقع)
+        </button>
+        <button onclick="switchTemplateTab('social')" id="tab-btn-social" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-slate-800 text-slate-300 hover:text-white">
+          2. نسخة السوشيال ميديا (فيسبوك)
+        </button>
+        <button onclick="switchTemplateTab('whatsapp')" id="tab-btn-whatsapp" class="px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-slate-800 text-slate-300 hover:text-white">
+          3. رد واتساب السريع للعملاء
+        </button>
+      </div>
+
+      <!-- Tab Content Area -->
+      <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-4xl mx-auto relative shadow-2xl">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+          <span id="current-template-title" class="text-sm font-bold text-amber-400 flex items-center gap-2">
+            <i class="fa-solid fa-file-lines"></i>
+            النسخة الكاملة للبروفايل التعريفي
+          </span>
+          <button onclick="copyCurrentTemplate()" class="px-4 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500 text-amber-400 hover:text-slate-950 border border-amber-500/30 transition-all font-bold text-xs flex items-center gap-2">
+            <i class="fa-regular fa-copy"></i>
+            <span>نسخ هذا النموذج</span>
+          </button>
+        </div>
+
+        <pre id="template-content-view" class="whitespace-pre-wrap font-cairo text-xs sm:text-sm text-slate-300 leading-relaxed max-h-96 overflow-y-auto custom-scrollbar p-2">
+        </pre>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact & Location Section -->
+  <section id="contact" class="py-20 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-amber-400 text-xs font-bold uppercase tracking-wider bg-amber-500/10 px-3 py-1 rounded-full border border-amber-500/20">تواصل فوري</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white mt-3">يسعدنا استقبال استفساراتكم</h2>
+        <p class="text-slate-400 text-sm mt-2">فريق الأهرام في خدمتكم يومياً لتلبية جميع متطلبات الدعاية والإعلان.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Address Card -->
+        <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-2xl mx-auto mb-4 border border-amber-500/20">
+            <i class="fa-solid fa-map-location-dot"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-1">المقر الرئيسي</h4>
+          <p id="contact-address-text" class="text-xs text-slate-400 mb-4">سوهاج — دار السلام — شارع السوق القديم</p>
+          <span class="inline-block text-[11px] bg-slate-800 text-slate-300 px-3 py-1 rounded-lg">إدارة: م. أيمن عمران</span>
+        </div>
+
+        <!-- Phone Card -->
+        <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-2xl mx-auto mb-4 border border-blue-500/20">
+            <i class="fa-solid fa-phone-volume"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-1">الاتصال المباشر</h4>
+          <p id="contact-phone-text" class="text-sm font-mono font-bold text-slate-200 mb-4">01142235030+</p>
+          <a id="contact-call-btn" href="tel:+201142235030" class="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition-all">
+            <i class="fa-solid fa-phone"></i>
+            <span>اتصال الآن</span>
+          </a>
+        </div>
+
+        <!-- WhatsApp Card -->
+        <div class="p-6 rounded-3xl bg-slate-900 border border-slate-800 text-center">
+          <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-2xl mx-auto mb-4 border border-emerald-500/20">
+            <i class="fa-brands fa-whatsapp"></i>
+          </div>
+          <h4 class="font-bold text-white text-base mb-1">واتساب والمحفظة</h4>
+          <p id="contact-whatsapp-text" class="text-sm font-mono font-bold text-slate-200 mb-4">01095112718+</p>
+          <a id="contact-whatsapp-btn" href="https://wa.me/201095112718" target="_blank" class="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition-all">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>محادثة واتساب</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 bg-slate-950 border-t border-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-right">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
+        <span class="text-xs text-slate-400 font-bold">الأهرام للدعاية والإعلان — لأن إعلانك يستحق الأفضل دائماً.</span>
+      </div>
+      <p class="text-xs text-slate-500">
+        جميع الحقوق محفوظة © <span id="current-year"></span> | إدارة م. أيمن عمران
+      </p>
+    </div>
+  </footer>
+
+  <!-- ======================================================== -->
+  <!-- MODAL: ADMIN DASHBOARD (لوحة تحكم الإدارة) -->
+  <!-- ======================================================== -->
+  <div id="admin-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden transition-opacity">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-5xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Admin Modal Header -->
+      <div class="px-6 py-4 bg-slate-950 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg border border-amber-500/30">
+            <i class="fa-solid fa-gauge-high"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-white text-lg">لوحة تحكم الإدارة</h3>
+            <p class="text-xs text-slate-400">التحكم في بيانات الوكالة، الخدمات، النصوص، وسجل الطلبات</p>
+          </div>
+        </div>
+        <button onclick="closeAdminModal()" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center text-sm transition-colors">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Password Lock Screen (if not unlocked) -->
+      <div id="admin-auth-view" class="p-8 text-center my-auto">
+        <div class="w-16 h-16 rounded-3xl bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center text-3xl mx-auto mb-4">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+        <h4 class="text-xl font-black text-white mb-2">تسجيل دخول الإدارة</h4>
+        <p class="text-xs text-slate-400 max-w-xs mx-auto mb-6">يرجى إدخال رمز المرور للتحكم في محتوى الموقع والطلبات (الرمز الافتراضي: <span class="text-amber-400 font-mono font-bold">1234</span>)</p>
+
+        <form onsubmit="handleAdminLogin(event)" class="max-w-xs mx-auto space-y-4">
+          <input type="password" id="admin-pass-input" placeholder="أدخل رمز المرور..." class="w-full text-center tracking-widest text-lg bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amber-500 transition-colors">
+          <button type="submit" class="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm transition-all shadow-lg shadow-amber-500/20">
+            دخول لوحة التحكم
+          </button>
+          <div id="auth-error-msg" class="text-xs text-rose-500 font-bold hidden">رمز المرور غير صحيح! حاول مرة أخرى.</div>
+        </form>
+      </div>
+
+      <!-- Main Admin Panel (Visible after unlock) -->
+      <div id="admin-content-view" class="hidden flex-1 flex flex-col overflow-hidden">
+        
+        <!-- Admin Navigation Tabs -->
+        <div class="flex items-center gap-2 px-6 pt-3 border-b border-slate-800 bg-slate-950/40 overflow-x-auto custom-scrollbar">
+          <button onclick="switchAdminTab('general')" id="adm-tab-general" class="px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-black border-b-2 border-amber-500 text-amber-400 bg-slate-900/60">
+            <i class="fa-solid fa-sliders ml-1"></i> البيانات الأساسية
+          </button>
+          <button onclick="switchAdminTab('services')" id="adm-tab-services" class="px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-bold text-slate-400 hover:text-white border-b-2 border-transparent">
+            <i class="fa-solid fa-layer-group ml-1"></i> إدارة الخدمات
+          </button>
+          <button onclick="switchAdminTab('orders')" id="adm-tab-orders" class="px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-bold text-slate-400 hover:text-white border-b-2 border-transparent">
+            <i class="fa-solid fa-inbox ml-1"></i> سجل الطلبات (<span id="adm-orders-count">0</span>)
+          </button>
+          <button onclick="switchAdminTab('marketing')" id="adm-tab-marketing" class="px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-bold text-slate-400 hover:text-white border-b-2 border-transparent">
+            <i class="fa-solid fa-bullhorn ml-1"></i> النصوص التسويقية
+          </button>
+        </div>
+
+        <!-- Admin Tab Panes Container -->
+        <div class="flex-1 overflow-y-auto p-6 custom-scrollbar bg-slate-900/50">
+          
+          <!-- TAB 1: General Settings -->
+          <div id="pane-general" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">اسم الوكالة</label>
+                <input type="text" id="adm-agency-name" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">الشعار اللفظي (Slogan)</label>
+                <input type="text" id="adm-agency-slogan" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">اسم المدير المسئول</label>
+                <input type="text" id="adm-manager-name" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">رقم هاتف الاتصال المباشر</label>
+                <input type="text" id="adm-phone-call" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">رقم واتساب</label>
+                <input type="text" id="adm-whatsapp" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-300 mb-1">رقم المحفظة الإلكترونية (فودافون كاش)</label>
+                <input type="text" id="adm-cash-wallet" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+              <div class="md:col-span-2">
+                <label class="block text-xs font-bold text-slate-300 mb-1">العنوان الكامل للفرع</label>
+                <input type="text" id="adm-address" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800 flex justify-end">
+              <button onclick="saveGeneralSettings()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm flex items-center gap-2 shadow-lg shadow-amber-500/20">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>حفظ التعديلات العامة</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- TAB 2: Services Manager -->
+          <div id="pane-services" class="hidden space-y-6">
+            
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-white text-sm">قائمة الخدمات المعروضة</h4>
+              <button onclick="openAddServiceModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5">
+                <i class="fa-solid fa-plus"></i>
+                <span>إضافة خدمة جديدة</span>
+              </button>
+            </div>
+
+            <div id="adm-services-list" class="space-y-3">
+              <!-- Rendered via JS -->
+            </div>
+
+          </div>
+
+          <!-- TAB 3: Orders Tracker -->
+          <div id="pane-orders" class="hidden space-y-4">
+            <div class="flex items-center justify-between">
+              <h4 class="font-bold text-white text-sm">الطلبات المسجلة من الموقع</h4>
+              <button onclick="clearOrdersHistory()" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-rose-900/40 text-rose-400 text-xs font-bold border border-slate-700">
+                <i class="fa-solid fa-trash-can ml-1"></i> مسح السجل
+              </button>
+            </div>
+
+            <div id="adm-orders-list" class="space-y-3">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- TAB 4: Marketing Copy Editor -->
+          <div id="pane-marketing" class="hidden space-y-6">
+            <div>
+              <label class="block text-xs font-bold text-amber-400 mb-1">النموذج 1: النسخة الكاملة للموقع والبروفايل</label>
+              <textarea id="adm-tpl-full" rows="6" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 font-mono leading-relaxed focus:outline-none focus:border-amber-500"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-amber-400 mb-1">النموذج 2: منشور السوشيال ميديا (فيسبوك/إنستغرام)</label>
+              <textarea id="adm-tpl-social" rows="5" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 font-mono leading-relaxed focus:outline-none focus:border-amber-500"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-amber-400 mb-1">النموذج 3: رسالة الرد السريع لواتساب</label>
+              <textarea id="adm-tpl-whatsapp" rows="5" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-slate-200 font-mono leading-relaxed focus:outline-none focus:border-amber-500"></textarea>
+            </div>
+
+            <div class="pt-4 border-t border-slate-800 flex justify-end">
+              <button onclick="saveMarketingTemplates()" class="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm flex items-center gap-2">
+                <i class="fa-solid fa-floppy-disk"></i>
+                <span>تحديث النصوص التسويقية</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: ADD / EDIT SERVICE -->
+  <div id="service-form-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl w-full max-w-lg p-6 shadow-2xl">
+      <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
+        <h4 id="service-modal-title" class="font-bold text-white text-base">إضافة خدمة</h4>
+        <button onclick="closeServiceFormModal()" class="text-slate-400 hover:text-white">
+          <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleSaveService(event)" class="space-y-4">
+        <input type="hidden" id="edit-service-id">
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">عنوان الخدمة *</label>
+          <input type="text" id="svc-input-title" required class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">أيقونة الخدمة (FontAwesome) أو تعبيرية</label>
+          <input type="text" id="svc-input-icon" placeholder="مثال: fa-print أو fa-id-card أو fa-store" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">وصف موجز *</label>
+          <textarea id="svc-input-desc" required rows="2" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500"></textarea>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-300 mb-1">شارة مميزة (Badge)</label>
+          <input type="text" id="svc-input-badge" placeholder="مثال: ألوان ثابتة أو مخصص حسب طلبك" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+        </div>
+
+        <div class="pt-4 border-t border-slate-800 flex items-center justify-end gap-3">
+          <button type="button" onclick="closeServiceFormModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-bold">إلغاء</button>
+          <button type="submit" class="px-6 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-black">حفظ الخدمة</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- APPLICATION LOGIC & DATA -->
+  <script>
+    // State management
+    const appState = {
+      agencyName: "الأهرام للدعاية والإعلان",
+      slogan: "إبداعك... بصمتنا",
+      manager: "م. أيمن عمران",
+      phoneCall: "01142235030",
+      whatsapp: "01095112718",
+      cashWallet: "01095112718",
+      address: "سوهاج — دار السلام — شارع السوق القديم",
+      services: [
+        {
+          id: 1,
+          title: "بانرات وفليكس",
+          desc: "طباعة بأعلى دقة وألوان تدوم طويلاً، مقاومة للعوامل الجوية ومثالية للإعلانات الخارجية والداخلية.",
+          badge: "دقة فائقة وألوان زاهية",
+          icon: "fa-print"
+        },
+        {
+          id: 2,
+          title: "حروف بارزة (بلاستيك واكريليك)",
+          desc: "لمسات راقية تعكس فخامة واجهة محلك أو مكتبك أو شركتك، إضاءة ليد عصرية وتشطيبات ممتازة.",
+          badge: "فخامة الواجهات",
+          icon: "fa-cubes"
+        },
+        {
+          id: 3,
+          title: "كروت أفراح ومناسبات",
+          desc: "تصاميم مخصصة ومبتكرة لأجمل لحظات العمر، أشكال مودرن وخامات ورقية فاخرة تليق بفرحتكم.",
+          badge: "تصاميم حسب الطلب",
+          icon: "fa-envelope-open-text"
+        },
+        {
+          id: 4,
+          title: "كروت أعمال (Business Cards)",
+          desc: "أناقة واحترافية تليق بعلامتك التجارية، طباعة وجه أو وجهين مع سلوفان مط أو لامع.",
+          badge: "انطباع أول يدوم",
+          icon: "fa-address-card"
+        },
+        {
+          id: 5,
+          title: "كروت سبوع ومناسبات أطفال",
+          desc: "أفكار مبهجة وأشكال عصرية كرتونية وشخصيات كرتونية لكل مناسبة سعيدة ترحب بمولودك الجديد.",
+          badge: "أفكار مبهجة للأطفال",
+          icon: "fa-cake-candles"
+        },
+        {
+          id: 6,
+          title: "واجهات واستيكرات محلات",
+          desc: "تغليف زجاج واجهات المحلات، فينيل مطبوع ومفرغ بأحدث ماكينات البلوتر وبأعلى دقة تفاصيل.",
+          badge: "عروض مخصصة للمحلات",
+          icon: "fa-store"
+        }
+      ],
+      orders: [
+        {
+          id: 101,
+          customerName: "سوبر ماركت النور",
+          phone: "01012345678",
+          service: "بانرات وفليكس",
+          details: "بانر واجهة 4*1.5 متر مع شاسيه حديد",
+          date: "اليوم 11:30 ص",
+          status: "قيد التنفيذ"
+        }
+      ],
+      templates: {
+        full: `الأهرام للدعاية والإعلان
+إبداعك... بصمتنا
+
+في «الأهرام للدعاية والإعلان»، نحوّل أفكارك إلى تصاميم تلفت الأنظار وتصنع فارقاً حقيقياً في ظهور مشروعك أو مناسبتك. من البانرات والواجهات الإعلانية إلى كروت المناسبات الراقية، نمنحك أعلى معايير الجودة وأحدث تقنيات الطباعة بسرعة فائقة، وأسعار تنافسية تناسب الجميع مع عروض مميزة للكميات.
+
+✦ خدماتنا:
+🔸 بانرات وفليكس: طباعة بأعلى دقة وألوان تدوم طويلاً.
+🔸 حروف بارزة (بلاستيك): لمسات راقية تعكس فخامة واجهة محلك أو مكتبك.
+🔸 كروت أفراح ومناسبات: تصاميم مخصصة ومبتكرة لأجمل لحظات العمر.
+🔸 كروت أعمال (Business Cards): أناقة واحترافية تليق بعلامتك التجارية.
+🔸 كروت سبوع ومناسبات أطفال: أفكار مبهجة وأشكال عصرية لكل مناسبة سعيدة.
+
+✦ ليه تختار «الأهرام»؟
+✔️ تصاميم احترافية تنفذ خصيصاً على ذوقك.
+✔️ سرعة ودقة في التسليم بدون أي مساومة على الجودة.
+✔️ خصومات خاصة للكميات وأسعار تناسب الجميع.
+✔️ خبرة عريقة وثقة مستمرة لدى عملائنا في سوهاج وخارجها.
+
+✦ اطلب شغلك وأنت في مكانك!
+وفّر وقتك ومجهودك، وخلّي طلبك يوصل لحد عندك:
+1. اختار التصميم أو شاركنا فكرتك عبر واتساب.
+2. أكّد طلبك بعربون بسيط يتم تحويله على محفظتنا الإلكترونية.
+3. استلم شغلك في الموعد وادفع الباقي عند الاستلام!
+
+💳 رقم المحفظة الإلكترونية للدفع السريع (فودافون كاش / محافظ إلكترونية):
+01095112718
+
+✦ للتواصل والطلبات:
+📍 العنوان: سوهاج — دار السلام — شارع السوق القديم.
+📞 اتصال مباشر: 01142235030+
+💬 واتساب ومحفظة إلكترونية: 01095112718+
+👤 بإدارة: م. أيمن عمران
+الأهرام للدعاية والإعلان — لأن إعلانك يستحق الأفضل دائماً.`,
+
+        social: `شغلك جاهز وأنت مرتاح في مكانك! 🎨✨
+
+مع الأهرام للدعاية والإعلان، إعلانات محلك أو تفاصيل مناسبتك هتطلع بأعلى جودة وأحسن شكل:
+🔹 بانرات وفليكس بألوان قوية ودقة طباعة عالية.
+🔹 حروف بارزة فخمة لواجهات المحلات والشركات.
+🔹 كروت أفراح، كروت سبوع، وكروت شخصية بأحدث الموديلات.
+
+💡 احجز طلبك أونلاين خطوة بخطوة:
+ابعت فكرتك 👈 ادفع العربون على محفظتنا الإلكترونية 👈 واستلم شغلك وادفع الباقي عند الاستلام!
+
+💳 رقم المحفظة (فودافون كاش): 01095112718
+📍 سوهاج — دار السلام — شارع السوق القديم
+📞 للتواصل والاستفسار: 01142235030+ | 💬 واتساب: 01095112718+
+👤 بإدارة: م. أيمن عمران
+
+الأهرام للدعاية والإعلان... إبداعك، بصمتنا.`,
+
+        whatsapp: `أهلاً بحضرتك في الأهرام للدعاية والإعلان 🌸
+بإدارة م. أيمن عمران
+
+نسعد بتنفيذ طلبك بكل احترافية! لتأكيد الحجز أونلاين دون الحاجة لزيارة المقر:
+1. إرسال تفاصيل ومقاسات التصميم المطلوب.
+2. تحويل قيمة العربون عبر المحفظة الإلكترونية على الرقم: 01095112718.
+3. إرسال صورة إشعار التحويل لتثبيت الحجز وبدء التنفيذ فوراً.
+4. باقي الحساب يتم تسويته عند استلام العمل.
+
+يسعدنا الرد على كل استفساراتكم!`
+      },
+      currentTabTemplate: 'full',
+      isAdminUnlocked: false
+    };
+
+    // Initialize UI on window load
+    window.onload = function() {
+      document.getElementById('current-year').textContent = new Date().getFullYear();
+      renderAllViews();
+    };
+
+    // Render all components
+    function renderAllViews() {
+      // Branding & Contacts
+      document.getElementById('nav-brand-name').textContent = appState.agencyName.replace(' للدعاية والإعلان', '');
+      document.getElementById('nav-brand-slogan').textContent = appState.slogan;
+      document.getElementById('hero-manager-name').textContent = appState.manager;
+      document.getElementById('hero-title-main').textContent = appState.agencyName;
+      document.getElementById('hero-slogan-display').textContent = appState.slogan;
+      document.getElementById('hero-phone-display').textContent = '+' + appState.phoneCall;
+      document.getElementById('hero-cash-wallet').textContent = appState.cashWallet;
+      document.getElementById('step-cash-display').textContent = appState.cashWallet;
+      document.getElementById('fast-wallet-number').textContent = appState.cashWallet;
+      document.getElementById('hero-address-display').textContent = appState.address;
+      document.getElementById('contact-address-text').textContent = appState.address;
+      document.getElementById('contact-phone-text').textContent = '+' + appState.phoneCall;
+      document.getElementById('contact-whatsapp-text').textContent = '+' + appState.whatsapp;
+
+      // Links
+      const waNumber = appState.whatsapp.replace(/[^0-9]/g, '');
+      const waUrl = `https://wa.me/2${waNumber}`;
+      const telUrl = `tel:+2${appState.phoneCall.replace(/[^0-9]/g, '')}`;
+
+      document.getElementById('nav-whatsapp-btn').href = waUrl;
+      document.getElementById('hero-whatsapp-order-btn').href = waUrl;
+      document.getElementById('hero-call-btn').href = telUrl;
+      document.getElementById('contact-call-btn').href = telUrl;
+      document.getElementById('contact-whatsapp-btn').href = waUrl;
+
+      // Services Grid
+      renderServicesGrid();
+
+      // Service Select Dropdown in Form
+      renderServiceDropdown();
+
+      // Marketing template view
+      switchTemplateTab(appState.currentTabTemplate);
+
+      // Admin stats & tables if opened
+      renderAdminServices();
+      renderAdminOrders();
+      populateAdminFields();
+    }
+
+    // Render public services cards
+    function renderServicesGrid() {
+      const container = document.getElementById('services-grid');
+      container.innerHTML = '';
+
+      appState.services.forEach(svc => {
+        const card = document.createElement('div');
+        card.className = "p-7 rounded-3xl bg-slate-900 border border-slate-800 hover:border-amber-500/40 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1";
+        
+        const cleanWa = appState.whatsapp.replace(/[^0-9]/g, '');
+        const orderText = encodeURIComponent(`السلام عليكم، أود الاستفسار وطلب خدمة: ${svc.title} من الأهرام للدعاية والإعلان.`);
+        const orderUrl = `https://wa.me/2${cleanWa}?text=${orderText}`;
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-14 h-14 rounded-2xl bg-amber-500/10 text-amber-400 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors flex items-center justify-center text-2xl border border-amber-500/20">
+                <i class="fa-solid ${svc.icon || 'fa-cubes'}"></i>
+              </div>
+              <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-slate-800 text-amber-300 border border-slate-700">
+                ${svc.badge || 'خدمة متميزة'}
+              </span>
+            </div>
+            <h3 class="text-xl font-black text-white mb-2 group-hover:text-amber-400 transition-colors">${svc.title}</h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-6">${svc.desc}</p>
+          </div>
+          
+          <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+            <span class="text-xs text-slate-400">عروض للكميات</span>
+            <a href="${orderUrl}" target="_blank" class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-400 hover:text-amber-300 transition-colors">
+              <span>طلب مباشر</span>
+              <i class="fa-solid fa-arrow-left text-[10px]"></i>
+            </a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Render dropdown for order builder
+    function renderServiceDropdown() {
+      const select = document.getElementById('order-service-select');
+      select.innerHTML = '';
+      appState.services.forEach(svc => {
+        const opt = document.createElement('option');
+        opt.value = svc.title;
+        opt.textContent = svc.title;
+        select.appendChild(opt);
+      });
+    }
+
+    // Switch Marketing Template Tab
+    function switchTemplateTab(type) {
+      appState.currentTabTemplate = type;
+      
+      const btnFull = document.getElementById('tab-btn-full');
+      const btnSocial = document.getElementById('tab-btn-social');
+      const btnWa = document.getElementById('tab-btn-whatsapp');
+      const titleView = document.getElementById('current-template-title');
+      const contentView = document.getElementById('template-content-view');
+
+      // Reset styles
+      [btnFull, btnSocial, btnWa].forEach(btn => {
+        btn.className = "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all bg-slate-800 text-slate-300 hover:text-white";
+      });
+
+      if (type === 'full') {
+        btnFull.className = "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20";
+        titleView.innerHTML = `<i class="fa-solid fa-file-lines"></i> 1. النسخة الكاملة (للموقع والبروفايل التعريفي)`;
+        contentView.textContent = appState.templates.full;
+      } else if (type === 'social') {
+        btnSocial.className = "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20";
+        titleView.innerHTML = `<i class="fa-brands fa-facebook"></i> 2. نسخة السوشيال ميديا السريعة (فيسبوك / إنستغرام)`;
+        contentView.textContent = appState.templates.social;
+      } else {
+        btnWa.className = "px-5 py-2.5 rounded-xl text-xs sm:text-sm font-black transition-all bg-amber-500 text-slate-950 shadow-lg shadow-amber-500/20";
+        titleView.innerHTML = `<i class="fa-brands fa-whatsapp"></i> 3. رسالة الرد السريع عبر واتساب (لخدمة العملاء)`;
+        contentView.textContent = appState.templates.whatsapp;
+      }
+    }
+
+    // Copy Current Template
+    function copyCurrentTemplate() {
+      const text = appState.templates[appState.currentTabTemplate];
+      copyToClipboard(text, "تم نسخ النموذج التسويقي بنجاح!");
+    }
+
+    // Handle Customer Order Submission
+    function handleCustomerOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('order-cust-name').value.trim();
+      const phone = document.getElementById('order-cust-phone').value.trim();
+      const service = document.getElementById('order-service-select').value;
+      const qty = document.getElementById('order-cust-qty').value.trim();
+      const notes = document.getElementById('order-cust-notes').value.trim();
+
+      // Add to internal state
+      const newOrder = {
+        id: Date.now(),
+        customerName: name,
+        phone: phone,
+        service: service,
+        details: `${qty ? 'المقاس/الكمية: ' + qty : ''} ${notes ? '— ملاحظات: ' + notes : ''}`,
+        date: "الآن",
+        status: "طلب جديد"
+      };
+
+      appState.orders.unshift(newOrder);
+      renderAdminOrders();
+
+      // Format WhatsApp Message
+      const waMsg = `*طلب جديد من الموقع الإلكتروني — الأهرام للدعاية والإعلان*
+---------------------------------------
+👤 *الاسم / النشاط:* ${name}
+📞 *الهاتف:* ${phone}
+🎨 *نوع الخدمة:* ${service}
+📏 *الكمية أو المقاس:* ${qty || 'غير محدد'}
+📝 *تفاصيل وملاحظات:* ${notes || 'لا توجد ملاحظات إضافية'}
+---------------------------------------
+تم إرسال الطلب للاستفسار وتأكيد الحجز بالعربون.`;
+
+      const cleanWa = appState.whatsapp.replace(/[^0-9]/g, '');
+      const waUrl = `https://wa.me/2${cleanWa}?text=${encodeURIComponent(waMsg)}`;
+
+      // Reset form
+      document.getElementById('client-order-form').reset();
+      showToast("جاري توجيهك إلى واتساب لإرسال تفاصيل طلبك...", "fa-brands fa-whatsapp");
+
+      setTimeout(() => {
+        window.open(waUrl, '_blank');
+      }, 700);
+    }
+
+    // ========================================================
+    // ADMIN DASHBOARD LOGIC
+    // ========================================================
+    function openAdminModal() {
+      const modal = document.getElementById('admin-modal');
+      modal.classList.remove('hidden');
+
+      if (!appState.isAdminUnlocked) {
+        document.getElementById('admin-auth-view').classList.remove('hidden');
+        document.getElementById('admin-content-view').classList.add('hidden');
+        document.getElementById('admin-pass-input').value = '';
+        document.getElementById('auth-error-msg').classList.add('hidden');
+      } else {
+        document.getElementById('admin-auth-view').classList.add('hidden');
+        document.getElementById('admin-content-view').classList.remove('hidden');
+        populateAdminFields();
+      }
+    }
+
+    function closeAdminModal() {
+      document.getElementById('admin-modal').classList.add('hidden');
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const pin = document.getElementById('admin-pass-input').value;
+      if (pin === '1234') {
+        appState.isAdminUnlocked = true;
+        document.getElementById('admin-auth-view').classList.add('hidden');
+        document.getElementById('admin-content-view').classList.remove('hidden');
+        populateAdminFields();
+        showToast("مرحباً بك في لوحة تحكم الأهرام للدعاية والإعلان!");
+      } else {
+        document.getElementById('auth-error-msg').classList.remove('hidden');
+      }
+    }
+
+    function switchAdminTab(tab) {
+      const tabs = ['general', 'services', 'orders', 'marketing'];
+      tabs.forEach(t => {
+        document.getElementById(`pane-${t}`).classList.add('hidden');
+        const b = document.getElementById(`adm-tab-${t}`);
+        b.className = "px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-bold text-slate-400 hover:text-white border-b-2 border-transparent";
+      });
+
+      document.getElementById(`pane-${tab}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`adm-tab-${tab}`);
+      activeBtn.className = "px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-black border-b-2 border-amber-500 text-amber-400 bg-slate-900/60";
+    }
+
+    function populateAdminFields() {
+      document.getElementById('adm-agency-name').value = appState.agencyName;
+      document.getElementById('adm-agency-slogan').value = appState.slogan;
+      document.getElementById('adm-manager-name').value = appState.manager;
+      document.getElementById('adm-phone-call').value = appState.phoneCall;
+      document.getElementById('adm-whatsapp').value = appState.whatsapp;
+      document.getElementById('adm-cash-wallet').value = appState.cashWallet;
+      document.getElementById('adm-address').value = appState.address;
+
+      document.getElementById('adm-tpl-full').value = appState.templates.full;
+      document.getElementById('adm-tpl-social').value = appState.templates.social;
+      document.getElementById('adm-tpl-whatsapp').value = appState.templates.whatsapp;
+
+      document.getElementById('adm-orders-count').textContent = appState.orders.length;
+    }
+
+    function saveGeneralSettings() {
+      appState.agencyName = document.getElementById('adm-agency-name').value.trim() || appState.agencyName;
+      appState.slogan = document.getElementById('adm-agency-slogan').value.trim() || appState.slogan;
+      appState.manager = document.getElementById('adm-manager-name').value.trim() || appState.manager;
+      appState.phoneCall = document.getElementById('adm-phone-call').value.trim() || appState.phoneCall;
+      appState.whatsapp = document.getElementById('adm-whatsapp').value.trim() || appState.whatsapp;
+      appState.cashWallet = document.getElementById('adm-cash-wallet').value.trim() || appState.cashWallet;
+      appState.address = document.getElementById('adm-address').value.trim() || appState.address;
+
+      renderAllViews();
+      showToast("تم تحديث البيانات الأساسية بنجاح!");
+    }
+
+    function saveMarketingTemplates() {
+      appState.templates.full = document.getElementById('adm-tpl-full').value;
+      appState.templates.social = document.getElementById('adm-tpl-social').value;
+      appState.templates.whatsapp = document.getElementById('adm-tpl-whatsapp').value;
+
+      switchTemplateTab(appState.currentTabTemplate);
+      showToast("تم تحديث قوالب النصوص التسويقية بنجاح!");
+    }
+
+    // Render Admin Services List
+    function renderAdminServices() {
+      const container = document.getElementById('adm-services-list');
+      if (!container) return;
+      container.innerHTML = '';
+
+      appState.services.forEach(svc => {
+        const item = document.createElement('div');
+        item.className = "p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+        item.innerHTML = `
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-400 flex items-center justify-center text-lg">
+              <i class="fa-solid ${svc.icon || 'fa-cubes'}"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-white text-sm">${svc.title}</span>
+                <span class="text-[10px] bg-slate-800 text-amber-400 px-2 py-0.5 rounded-full">${svc.badge || ''}</span>
+              </div>
+              <p class="text-xs text-slate-400 line-clamp-1 mt-0.5">${svc.desc}</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2 self-end sm:self-auto">
+            <button onclick="openEditServiceModal(${svc.id})" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors">
+              <i class="fa-solid fa-pen-to-square ml-1"></i> تعديل
+            </button>
+            <button onclick="deleteService(${svc.id})" class="px-3 py-1.5 rounded-lg bg-rose-950/40 hover:bg-rose-900/60 text-rose-400 text-xs font-bold transition-colors">
+              <i class="fa-solid fa-trash ml-1"></i> حذف
+            </button>
+          </div>
+        `;
+        container.appendChild(item);
+      });
+    }
+
+    // Add / Edit Service Modal
+    function openAddServiceModal() {
+      document.getElementById('service-modal-title').textContent = "إضافة خدمة جديدة";
+      document.getElementById('edit-service-id').value = '';
+      document.getElementById('svc-input-title').value = '';
+      document.getElementById('svc-input-icon').value = 'fa-cubes';
+      document.getElementById('svc-input-desc').value = '';
+      document.getElementById('svc-input-badge').value = 'جديد ومميز';
+      document.getElementById('service-form-modal').classList.remove('hidden');
+    }
+
+    function openEditServiceModal(id) {
+      const svc = appState.services.find(s => s.id === id);
+      if (!svc) return;
+      document.getElementById('service-modal-title').textContent = "تعديل الخدمة";
+      document.getElementById('edit-service-id').value = svc.id;
+      document.getElementById('svc-input-title').value = svc.title;
+      document.getElementById('svc-input-icon').value = svc.icon || 'fa-cubes';
+      document.getElementById('svc-input-desc').value = svc.desc;
+      document.getElementById('svc-input-badge').value = svc.badge || '';
+      document.getElementById('service-form-modal').classList.remove('hidden');
+    }
+
+    function closeServiceFormModal() {
+      document.getElementById('service-form-modal').classList.add('hidden');
+    }
+
+    function handleSaveService(e) {
+      e.preventDefault();
+      const idVal = document.getElementById('edit-service-id').value;
+      const title = document.getElementById('svc-input-title').value.trim();
+      const icon = document.getElementById('svc-input-icon').value.trim() || 'fa-cubes';
+      const desc = document.getElementById('svc-input-desc').value.trim();
+      const badge = document.getElementById('svc-input-badge').value.trim();
+
+      if (idVal) {
+        // Edit
+        const target = appState.services.find(s => s.id == idVal);
+        if (target) {
+          target.title = title;
+          target.icon = icon;
+          target.desc = desc;
+          target.badge = badge;
+          showToast("تم تحديث بيانات الخدمة بنجاح!");
+        }
+      } else {
+        // Add
+        const newSvc = {
+          id: Date.now(),
+          title,
+          icon,
+          desc,
+          badge
+        };
+        appState.services.push(newSvc);
+        showToast("تمت إضافة الخدمة الجديدة بنجاح!");
+      }
+
+      closeServiceFormModal();
+      renderAllViews();
+    }
+
+    function deleteService(id) {
+      if (appState.services.length <= 1) {
+        showToast("لا يمكن حذف جميع الخدمات، يجب ترك خدمة واحدة على الأقل!", "fa-solid fa-triangle-exclamation");
+        return;
+      }
+      appState.services = appState.services.filter(s => s.id !== id);
+      renderAllViews();
+      showToast("تم حذف الخدمة من القائمة!");
+    }
+
+    // Render Admin Orders
+    function renderAdminOrders() {
+      const container = document.getElementById('adm-orders-list');
+      const countBadge = document.getElementById('adm-orders-count');
+      if (countBadge) countBadge.textContent = appState.orders.length;
+      if (!container) return;
+
+      container.innerHTML = '';
+      if (appState.orders.length === 0) {
+        container.innerHTML = `<div class="p-8 text-center text-slate-500 text-xs">لا توجد طلبات مسجلة حتى الآن.</div>`;
+        return;
+      }
+
+      appState.orders.forEach(ord => {
+        const row = document.createElement('div');
+        row.className = "p-4 rounded-2xl bg-slate-950 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3";
+        row.innerHTML = `
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-white text-sm">${ord.customerName}</span>
+              <span class="text-xs text-amber-400 font-mono">${ord.phone}</span>
+              <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded-full font-bold">${ord.status}</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-1">
+              <strong class="text-slate-300">الخدمة:</strong> ${ord.service} | ${ord.details || 'بدون تفاصيل'}
+            </div>
+            <div class="text-[10px] text-slate-500 mt-0.5">${ord.date}</div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <a href="https://wa.me/2${ord.phone.replace(/[^0-9]/g, '')}" target="_blank" class="px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600 text-emerald-400 hover:text-white text-xs font-bold transition-colors flex items-center gap-1">
+              <i class="fa-brands fa-whatsapp"></i> واتساب
+            </a>
+            <button onclick="deleteSingleOrder(${ord.id})" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-rose-900/60 text-slate-400 hover:text-rose-400 flex items-center justify-center text-xs transition-colors">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function deleteSingleOrder(id) {
+      appState.orders = appState.orders.filter(o => o.id !== id);
+      renderAdminOrders();
+      showToast("تم حذف الطلب من السجل!");
+    }
+
+    function clearOrdersHistory() {
+      appState.orders = [];
+      renderAdminOrders();
+      showToast("تم مسح سجل الطلبات بالكامل!");
+    }
+
+    // Helper: Copy text
+    function copyToClipboard(text, successMsg = "تم النسخ بنجاح!") {
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast(successMsg, "fa-solid fa-clipboard-check");
+      } catch (err) {
+        showToast("عذراً، تعذر النسخ التلقائي", "fa-solid fa-circle-exclamation");
+      }
+      document.body.removeChild(textarea);
+    }
+
+    // Toast notification
+    function showToast(msg, iconClass = "fa-solid fa-circle-check") {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      const toastIcon = document.getElementById('toast-icon');
+
+      toastMsg.textContent = msg;
+      toastIcon.className = `${iconClass} text-xl`;
+
+      toast.classList.remove('-translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('-translate-y-24', 'opacity-0');
+      }, 3000);
+    }
+  </script>
+</body>
+</html>
